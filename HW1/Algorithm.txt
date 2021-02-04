@@ -1,0 +1,41 @@
+
+
+Image is binary, so the pixel values would be either 0 or 1.
+
+In the case where high value is defined with 255 (in the provided image),
+we could or replace it with 1.
+
+Read image from imread, it would load the image in numpy format with 3 channel.
+Take any one channel matrix, now you have a 2D matrix with values 0 and 1.
+
+Assumption:
+the object are represented using the high pixel value i.e. 1.
+
+So the matrix take from image looks like:
+
+
+0 1 0 1 0 1
+1 0 1 0 0 1
+1 0 1 1 0 0
+
+The above is just a example.
+
+Our problem reduces to find the number of connected 1 region. In the above
+matrix we could see that there are 2 regions.
+
+
+Let the matrix be M
+row -> lenght of the image.
+col -> widht of the image.
+
+Now to find the number of region:
+1. Iterate over the each cell M[i][j] where i>0 and i< row and j>0 and j<col in the matrix.
+2. Now, create a boolean visited matrix of size [row][col].
+3. If M[i][j] = 1 and visited[i][j] =0, then the current cell is unvisited.
+4. Now apply iterative DFS algorithm to travel to the connected component in the matrix.
+5. DFS stops, i.e. the connected 1 for this object or region has traversed.
+7. increase count.
+6. go for next un visited cell where M[i][j] = 1.
+
+
+ 
